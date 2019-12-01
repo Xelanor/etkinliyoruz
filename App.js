@@ -14,6 +14,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Homepage from './screens/Homepage';
+import Deneme from './screens/Deneme';
 
 class SettingsScreen extends Component {
   state = {};
@@ -52,11 +53,12 @@ export default createAppContainer(
   createBottomTabNavigator(
     {
       Home: {screen: Homepage},
-      Search: {screen: SettingsScreen},
+      Search: {screen: Deneme},
       Favorites: {screen: SettingsScreen},
       Settings: {screen: SettingsScreen},
     },
     {
+      initialRouteName: 'Search',
       defaultNavigationOptions: ({navigation}) => ({
         tabBarIcon: ({focused, tintColor}) =>
           getTabBarIcon(navigation, focused, tintColor),

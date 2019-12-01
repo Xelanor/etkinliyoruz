@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, StatusBar, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  StatusBar,
+  Image,
+  Dimensions,
+} from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -22,11 +29,12 @@ const Header = props => {
   );
 };
 
+const screenWidth = Math.round(Dimensions.get('window').width);
 const styles = StyleSheet.create({
-  screen: {flexDirection: 'row', width: 300},
+  screen: {flexDirection: 'row', flex: 1, width: screenWidth},
   col: {
     flexDirection: 'column',
-    width: 285,
+    width: screenWidth - 130,
   },
   title: {fontSize: 20, fontWeight: 'bold', paddingLeft: 10},
   date: {
