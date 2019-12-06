@@ -3,45 +3,37 @@ import {
   StyleSheet,
   View,
   Text,
+  TextInput,
   SafeAreaView,
   ScrollView,
   PermissionsAndroid,
+  Picker,
 } from 'react-native';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+
+import SearchTextBox from '../components/SearchBoxes/SearchTextBox';
 
 class Deneme extends Component {
   state = {};
   render() {
     return (
-      <View style={styles.screen}>
-        <Text>asd</Text>
-        <MapView
-          provider={PROVIDER_GOOGLE}
-          style={styles.map}
-          region={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
-          }}
-        />
-      </View>
+      <>
+        <ScrollView style={{flex: 1, backgroundColor: 'black'}}>
+          <View style={styles.container}>
+            <SearchTextBox />
+          </View>
+        </ScrollView>
+      </>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    padding: 20,
-  },
   container: {
-    ...StyleSheet.absoluteFillObject,
-    height: 100,
-    width: 100,
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
+    flex: 1,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 });
 

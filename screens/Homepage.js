@@ -9,11 +9,18 @@ import {
   SafeAreaView,
   ScrollView,
   PermissionsAndroid,
+  Image,
+  Picker,
 } from 'react-native';
 import Materials from 'react-native-vector-icons/SimpleLineIcons';
 import Geolocation from 'react-native-geolocation-service';
 
+import SearchTextBox from '../components/SearchBoxes/SearchTextBox';
+import CategoryBox from '../components/CategoryBox/CategoryBox';
+import Button from '../components/Button/Button';
 import EventBox from '../components/EventBox/EventBox';
+
+import {districts} from '../constants/constants';
 
 class Homepage extends Component {
   state = {};
@@ -62,40 +69,52 @@ class Homepage extends Component {
         <SafeAreaView>
           <ScrollView contentInsetAdjustmentBehavior="automatic">
             <View style={styles.screen}>
-              <View style={styles.headerContainer}>
-                <View style={styles.header}>
-                  <Materials name="event" size={50} color="white" />
-                  <View style={styles.col}>
-                    <Text
-                      style={{
-                        color: 'white',
-                        fontWeight: '200',
-                        fontSize: 16,
-                        paddingBottom: 10,
-                      }}>
-                      Yakınlarda neler var?
-                    </Text>
-                    <Text
-                      style={{
-                        color: 'white',
-                        fontWeight: 'bold',
-                        fontSize: 40,
-                        textDecorationLine: 'underline',
-                      }}>
-                      Maltepe
-                    </Text>
-                  </View>
-                </View>
-                <Text
+              <View style={styles.image}>
+                <Image
                   style={{
-                    color: 'white',
-                    fontWeight: 'bold',
-                    fontSize: 15,
-                    paddingLeft: 30,
-                    paddingTop: 50,
-                  }}>
-                  En Popüler Etkinlikler
-                </Text>
+                    flex: 1,
+                    resizeMode: 'stretch',
+                    width: '100%',
+                  }}
+                  source={require('../assets/homepage-bg.png')}
+                />
+              </View>
+              <View style={styles.searchBar}>
+                <SearchTextBox />
+              </View>
+              <View style={styles.categoryBar}>
+                <Picker
+                  selectedValue={'-'}
+                  style={{
+                    height: 40,
+                    width: '90%',
+                    backgroundColor: 'white',
+                    paddingLeft: 20,
+                  }}
+                  itemStyle={{width: 300}}
+                  mode="dropdown">
+                  {districts.map(district => {
+                    return (
+                      <Picker.Item
+                        key={district}
+                        label={district}
+                        value={district}
+                      />
+                    );
+                  })}
+                </Picker>
+              </View>
+              <View style={styles.categoryBar}>
+                <SearchTextBox />
+              </View>
+              <View style={{padding: 15, flexDirection: 'row'}}>
+                <CategoryBox logo={'education'} />
+                <CategoryBox logo={'movie'} />
+                <CategoryBox logo={'avm'} />
+                <CategoryBox logo={'concert'} />
+              </View>
+              <View style={styles.buttonBar}>
+                <Button />
               </View>
               <View
                 style={{flexDirection: 'row', paddingLeft: 10, paddingTop: 20}}>
@@ -161,18 +180,29 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     paddingBottom: 20,
+    backgroundColor: '#DDDDDD',
   },
-  headerContainer: {
-    height: 220,
-    backgroundColor: 'tomato',
-    borderBottomEndRadius: 120,
-    borderBottomLeftRadius: 30,
-  },
-  header: {
+  image: {
+    flex: 1,
     flexDirection: 'row',
-    paddingLeft: 20,
-    paddingTop: 50,
-    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  searchBar: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: -80,
+  },
+  categoryBar: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: 20,
+  },
+  buttonBar: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   col: {
     flexDirection: 'column',
